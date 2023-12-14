@@ -7,26 +7,31 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
+import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import {
+  Avatar,
   Card,
   CardActionArea,
   CardMedia,
+  Container,
   Fab,
   FormControl,
   Grid,
   InputAdornment,
   InputBase,
   InputLabel,
+  ListItemAvatar,
   OutlinedInput,
   Paper,
   TextField,
 } from "@mui/material";
 import { Send, Menu, Search } from "@mui/icons-material";
+import Ansperson from "./ans";
+import QuestionCard from "./question";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -37,8 +42,8 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog() {
-  const [open, setOpen] = React.useState(true);
+export default function SendAnsQuesrion() {
+  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -52,7 +57,7 @@ export default function FullScreenDialog() {
     <React.Fragment>
       <Fab
         onClick={handleClickOpen}
-        sx={{ position: "absolute", bottom: 16, right: 16 }}
+        sx={{ position: "absolute", bottom: 16, left: 16 }}
         color="primary"
         aria-label="add"
       >
@@ -75,54 +80,59 @@ export default function FullScreenDialog() {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              送信画面
+              回答画面
             </Typography>
             {/* <Button autoFocus color="inherit" onClick={handleClose}>
               save
             </Button> */}
           </Toolbar>
         </AppBar>
-        <List>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="140"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                alt="green iguana"
-              />
-            </CardActionArea>
-          </Card>
-          <Paper
-            component="form"
-            sx={{
-              p: "2px 4px",
-              display: "flex",
-              alignItems: "center",
-              width: 400,
-            }}
-          >
-            <IconButton sx={{ p: "10px" }} aria-label="menu">
-              <Menu />
-            </IconButton>
-            <InputBase
-              sx={{ ml: 1, flex: 1 }}
-              placeholder="Search Google Maps"
-              inputProps={{ "aria-label": "search google maps" }}
-            />
-            <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-              <Search />
-            </IconButton>
-            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-            <IconButton
-              color="primary"
-              sx={{ p: "10px" }}
-              aria-label="directions"
+        <Container>
+          <List>
+            <List
+              sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
             >
-              <Search />
-            </IconButton>
-          </Paper>
-        </List>
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar>{/* ここに画像 */}</Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary="名無しのペンギン"
+                  secondary="Jan 9, 2014"
+                />
+              </ListItem>
+            </List>
+
+            {/* ここからメインコンテンツ　 */}
+            <QuestionCard />
+            {/* 回答をループ */}
+            <Ansperson />
+            <Ansperson />
+            <Ansperson />
+            {/* 送信フォーム */}
+            <Paper
+              component="form"
+              sx={{
+                p: "2px 4px",
+                display: "flex",
+                alignItems: "center",
+                width: 400,
+              }}
+            >
+              <TextField
+                id="content"
+                label="回答"
+                multiline
+                minRows={2}
+                maxRows={4}
+                variant="filled"
+              />
+              <Button variant="contained" endIcon={<Send />}>
+                Send
+              </Button>
+            </Paper>
+          </List>
+        </Container>
       </Dialog>
     </React.Fragment>
   );

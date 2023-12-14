@@ -15,7 +15,8 @@ import {
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { AnimationMixer } from "three";
-import FullScreenDialog from "./addparents";
+import FullScreenDialog from "./send-question";
+import SendAnsQuesrion from "./send-ansquestion";
 
 function Scene() {
   const [hovered, setHover] = useState(false);
@@ -71,6 +72,7 @@ export default function App() {
   return (
     <main>
       <FullScreenDialog />
+      <SendAnsQuesrion />
       <Canvas
         style={{ width: "100vw", height: "100vh" }}
         shadows
@@ -78,7 +80,7 @@ export default function App() {
         flat
       >
         <ambientLight intensity={1.5} />
-        {/* <directionalLight color="" position={[0, 0, 10]} /> */}
+        <directionalLight color="" position={[0, 0, 10]} />
         <directionalLight color="#ffffff" position={[0, 0, -10]} />
         <Scene />
 
