@@ -14,7 +14,17 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { formatGetDiscussionItem } from "../func/api";
+import {
+  formatGetDiscussionItem,
+  getDiscussionAll,
+  postUpIsee,
+} from "../func/api";
+import {
+  getdiscussionAllDataAtom,
+  parentDiscussionId,
+  userNameAtom,
+} from "../recoil/atom";
+import { useRecoilState } from "recoil";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -33,9 +43,35 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 export const Ansperson = (props: { item: formatGetDiscussionItem }) => {
   const [expanded, setExpanded] = React.useState(false);
-
+  const [userName, setUserName] = useRecoilState(userNameAtom);
+  const [discussionAll, setDiscussionAll] = useRecoilState(
+    getdiscussionAllDataAtom
+  );
+  const [discussionId, setDiscussionId] = useRecoilState(parentDiscussionId);
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+  const handleUpIsee = async () => {
+    if (userName == props.item.user_id) {
+      await postUpIsee({
+        user_id: userName,
+        discussion_id: props.item.discussion_id,
+        count: 5,
+      });
+    } else {
+      if (userName) {
+        await postUpIsee({
+          user_id: userName,
+          discussion_id: props.item.discussion_id,
+          count: 1,
+        });
+      }
+    }
+    // 更新かける
+    if (discussionId) {
+      const getdata = await getDiscussionAll(discussionId);
+      setDiscussionAll(getdata);
+    }
   };
 
   return (
@@ -44,9 +80,10 @@ export const Ansperson = (props: { item: formatGetDiscussionItem }) => {
         <Typography variant="body2" color="text.secondary">
           {props.item.content}
         </Typography>
+        <h6>isee数:{props.item.isee}</h6>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton onClick={handleUpIsee} aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
       </CardActions>
