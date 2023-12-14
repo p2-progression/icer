@@ -17,6 +17,14 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { AnimationMixer } from "three";
 import FullScreenDialog from "./send-question";
 import SendAnsQuesrion from "./send-ansquestion";
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
+import FormDialog from "./setuser";
 
 function Scene() {
   const [hovered, setHover] = useState(false);
@@ -70,26 +78,29 @@ function Background() {
 
 export default function App() {
   return (
-    <main>
-      <FullScreenDialog />
-      <SendAnsQuesrion />
-      <Canvas
-        style={{ width: "100vw", height: "100vh" }}
-        shadows
-        camera={{ fov: 50, zoom: 3 }}
-        flat
-      >
-        <ambientLight intensity={1.5} />
-        <directionalLight color="" position={[0, 0, 10]} />
-        <directionalLight color="#ffffff" position={[0, 0, -10]} />
-        <Scene />
+    <>
+      <RecoilRoot>
+        <FormDialog />
+        <FullScreenDialog />
+        <SendAnsQuesrion />
+        <Canvas
+          style={{ width: "100vw", height: "100vh" }}
+          shadows
+          camera={{ fov: 50, zoom: 3 }}
+          flat
+        >
+          <ambientLight intensity={1.5} />
+          <directionalLight color="" position={[0, 0, 10]} />
+          <directionalLight color="#ffffff" position={[0, 0, -10]} />
+          <Scene />
 
-        <TheModel />
+          <TheModel />
 
-        <Background />
+          <Background />
 
-        <OrbitControls></OrbitControls>
-      </Canvas>
-    </main>
+          <OrbitControls></OrbitControls>
+        </Canvas>
+      </RecoilRoot>
+    </>
   );
 }
