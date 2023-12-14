@@ -15,14 +15,14 @@ const bull = (
   </Box>
 );
 
-export default function QuestionCard() {
+export const QuestionCard = (props: { content: string }) => {
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
         <Typography variant="h5" component="div">
-          ぺけするにはどうしたらいいですか?
+          {props.content}
         </Typography>
       </CardContent>
     </Card>
   );
-}
+};

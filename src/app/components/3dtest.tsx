@@ -15,7 +15,7 @@ import {
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { AnimationMixer } from "three";
-import FullScreenDialog from "./send-question";
+import SendQuestionDialog from "./send-question";
 import SendAnsQuesrion from "./send-ansquestion";
 import {
   RecoilRoot,
@@ -25,6 +25,12 @@ import {
   useRecoilValue,
 } from "recoil";
 import FormDialog from "./setuser";
+import { ApiAutoUpdate } from "../func/api";
+import {
+  parentDiscussionId,
+  sendAnsQuestionDialogAtom,
+  sendQuestionDialogAtom,
+} from "../recoil/atom";
 
 function Scene() {
   const [hovered, setHover] = useState(false);
@@ -34,12 +40,18 @@ function Scene() {
   gltf.scene.position.set(0.23, 0.23, 0.23);
 
   gltf.scene.lookAt(0, 1, 0);
-
+  const [discussionId, setDiscussionId] = useRecoilState(parentDiscussionId);
+  const [openSendQuestionDialog, setOpenopenSendQuestionDialog] =
+    useRecoilState(sendAnsQuestionDialogAtom);
   // gltf.scene.position.set();
   return (
     <primitive
       onPointerOver={() => setHover(true)}
       onPointerOut={() => setHover(false)}
+      onClick={() => {
+        setDiscussionId(7);
+        setOpenopenSendQuestionDialog(true);
+      }}
       color={hovered ? "hotpink" : "orange"}
       object={gltf.scene}
     />
@@ -80,8 +92,9 @@ export default function App() {
   return (
     <>
       <RecoilRoot>
+        <ApiAutoUpdate />
         <FormDialog />
-        <FullScreenDialog />
+        <SendQuestionDialog />
         <SendAnsQuesrion />
         <Canvas
           style={{ width: "100vw", height: "100vh" }}
@@ -93,11 +106,8 @@ export default function App() {
           <directionalLight color="" position={[0, 0, 10]} />
           <directionalLight color="#ffffff" position={[0, 0, -10]} />
           <Scene />
-
           <TheModel />
-
           <Background />
-
           <OrbitControls></OrbitControls>
         </Canvas>
       </RecoilRoot>

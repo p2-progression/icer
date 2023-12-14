@@ -30,8 +30,17 @@ import {
   TextField,
 } from "@mui/material";
 import { Send, Menu, Search } from "@mui/icons-material";
-import Ansperson from "./ans";
-import QuestionCard from "./question";
+import { Ansperson } from "./ans";
+import { QuestionCard } from "./question";
+import {
+  getdiscussionAllDataAtom,
+  parentDiscussionId,
+  sendAnsQuestionDialogAtom,
+  userNameAtom,
+} from "../recoil/atom";
+import { useRecoilState } from "recoil";
+import dayjs from "dayjs";
+import { getDiscussionAll, postCreateChild } from "../func/api";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -43,7 +52,13 @@ const Transition = React.forwardRef(function Transition(
 });
 
 export default function SendAnsQuesrion() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useRecoilState(sendAnsQuestionDialogAtom);
+  const [textForm, setTextForm] = React.useState("");
+  const [userName, setUserName] = useRecoilState(userNameAtom);
+  const [discussionAll, setDiscussionAll] = useRecoilState(
+    getdiscussionAllDataAtom
+  );
+  const [discussionId, setDiscussionId] = useRecoilState(parentDiscussionId);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -53,6 +68,20 @@ export default function SendAnsQuesrion() {
     setOpen(false);
   };
 
+  const handleSend = async () => {
+    if (textForm != "" && userName && discussionId) {
+      await postCreateChild({
+        user_id: userName,
+        parent_discussion_id: discussionId,
+        content: textForm,
+      });
+      // 更新かける
+      const getdata = await getDiscussionAll(discussionId);
+      setDiscussionAll(getdata);
+    } else {
+      // エラーを吐く予定
+    }
+  };
   return (
     <React.Fragment>
       <Fab
@@ -97,18 +126,35 @@ export default function SendAnsQuesrion() {
                   <Avatar>{/* ここに画像 */}</Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                  primary="名無しのペンギン"
-                  secondary="Jan 9, 2014"
+                  primary={
+                    discussionAll.find((ele) => ele.is_parent == 1)?.user_id ||
+                    "名無しのペンギン"
+                  }
+                  secondary={dayjs(
+                    discussionAll.find((ele) => ele.is_parent == 1)?.date
+                  ).format("YYYY/MM/DD")}
                 />
               </ListItem>
             </List>
 
             {/* ここからメインコンテンツ　 */}
-            <QuestionCard />
+            <QuestionCard
+              content={
+                discussionAll.find((ele) => ele.is_parent == 1)?.content || ""
+              }
+            />
+
             {/* 回答をループ */}
-            <Ansperson />
-            <Ansperson />
-            <Ansperson />
+            {discussionAll.map((ele) => {
+              if (ele.is_parent == 0) {
+                return (
+                  <>
+                    <Ansperson item={ele} />
+                  </>
+                );
+              }
+            })}
+
             {/* 送信フォーム */}
             <Paper
               component="form"
@@ -126,8 +172,16 @@ export default function SendAnsQuesrion() {
                 minRows={2}
                 maxRows={4}
                 variant="filled"
+                value={textForm}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setTextForm(event.target.value);
+                }}
               />
-              <Button variant="contained" endIcon={<Send />}>
+              <Button
+                onClick={handleSend}
+                variant="contained"
+                endIcon={<Send />}
+              >
                 Send
               </Button>
             </Paper>

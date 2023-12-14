@@ -27,6 +27,14 @@ import {
   TextField,
 } from "@mui/material";
 import { Send, Menu, Search } from "@mui/icons-material";
+import {
+  parentDiscussionId,
+  sendAnsQuestionDialogAtom,
+  sendQuestionDialogAtom,
+  userNameAtom,
+} from "../recoil/atom";
+import { useRecoilState } from "recoil";
+import { postCreateDiscussion } from "../func/api";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -37,17 +45,34 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog() {
-  const [open, setOpen] = React.useState(false);
+export default function SendQuestionDialog() {
+  const [textForm, setTextForm] = React.useState("");
+  const [userName, setUserName] = useRecoilState(userNameAtom);
+  const [openSendQuestionDialog, setOpenopenSendQuestionDialog] =
+    useRecoilState(sendQuestionDialogAtom);
+  const [discussionId, setDiscussionId] = useRecoilState(parentDiscussionId);
+  const [sendAnsQuestionDialog, setsendAnsQuestionDialog] = useRecoilState(
+    sendAnsQuestionDialogAtom
+  );
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setOpenopenSendQuestionDialog(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenopenSendQuestionDialog(false);
   };
-
+  const handleSend = async () => {
+    if (userName !== null) {
+      const sendReaponse = await postCreateDiscussion({
+        user_id: userName,
+        content: textForm,
+      });
+      setDiscussionId(sendReaponse);
+      handleClose();
+      setsendAnsQuestionDialog(true);
+    }
+  };
   return (
     <React.Fragment>
       <Fab
@@ -60,7 +85,7 @@ export default function FullScreenDialog() {
       </Fab>
       <Dialog
         fullScreen
-        open={open}
+        open={openSendQuestionDialog}
         onClose={handleClose}
         TransitionComponent={Transition}
       >
@@ -109,9 +134,13 @@ export default function FullScreenDialog() {
               multiline
               minRows={2}
               maxRows={4}
+              value={textForm}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setTextForm(event.target.value);
+              }}
               variant="filled"
             />
-            <Button variant="contained" endIcon={<Send />}>
+            <Button onClick={handleSend} variant="contained" endIcon={<Send />}>
               Send
             </Button>
           </Paper>

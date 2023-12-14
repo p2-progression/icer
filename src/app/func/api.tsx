@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   RecoilRoot,
   atom,
@@ -7,12 +7,34 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import { userNameAtom } from "../recoil/atom";
+import {
+  getdiscussionAllDataAtom,
+  parentDiscussionId,
+  userNameAtom,
+} from "../recoil/atom";
 import axios from "axios";
-// function Api() {
-//   const [text, setText] = useRecoilState(userNameAtom);
-//   return <></>;
-// }
+import { Button } from "@mui/material";
+
+export function ApiAutoUpdate() {
+  const [userName, setUserName] = useRecoilState(userNameAtom);
+  const [discussionId, setDiscussionId] = useRecoilState(parentDiscussionId);
+  const [discussionAll, setDiscussionAll] = useRecoilState(
+    getdiscussionAllDataAtom
+  );
+
+  // discussionIdに変更があるたびデータを取得し直す
+  useEffect(() => {
+    (async () => {
+      if (discussionId !== null) {
+        const getdata = await getDiscussionAll(discussionId);
+        setDiscussionAll(getdata);
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [discussionId]);
+
+  return <></>;
+}
 
 export async function checkUserName(userName: string) {
   const checkRequiest = await axios.post(
@@ -39,17 +61,96 @@ export async function createUser(userName: string, dusername: string) {
   );
   return checkRequiest.data;
 }
+export interface formatGetDiscussionItem {
+  post_id: string;
+  discussion_id: number;
+  is_parent: number;
+  parent_discussion_id: number;
+  user_id: string;
+  isee: number;
+  bad: number;
+  content: string;
+  date: string;
+}
 
-export async function getDiscussionItem(discussion_id: string) {
+export async function getDiscussionItem(
+  discussion_id: string
+): Promise<formatGetDiscussionItem> {
   const getRequest = await axios.get(
     `https://p2-api.flyanyfree.com/discussion/get/item/${discussion_id}`
   );
   return getRequest.data;
 }
 
-export async function getDiscussionAll(discussion_id: string) {
+export async function getDiscussionAll(
+  parent_discussion_id: number
+): Promise<formatGetDiscussionItem[]> {
   const getRequest = await axios.get(
-    `https://p2-api.flyanyfree.com/discussion/get/all/${discussion_id}`
+    `https://p2-api.flyanyfree.com/discussion/get/all/${parent_discussion_id}`
   );
   return getRequest.data;
+}
+
+export interface propsPostCreateDiscussion {
+  user_id: string;
+  content: string;
+}
+export async function postCreateDiscussion(
+  props: propsPostCreateDiscussion
+): Promise<number> {
+  const checkRequiest = await axios.post(
+    "https://p2-api.flyanyfree.com/discussion/post/parent",
+    {
+      user_id: props.user_id,
+      content: props.content,
+    },
+    {
+      headers: {
+        "content-type": "application/json",
+      },
+    }
+  );
+  return checkRequiest.data["LAST_INSERT_ID()"];
+}
+
+export interface propsPostCreateChild {
+  user_id: string;
+  parent_discussion_id: number;
+  content: string;
+}
+export async function postCreateChild(props: propsPostCreateChild) {
+  const checkRequiest = await axios.post(
+    "https://p2-api.flyanyfree.com/discussion/post/child",
+    {
+      user_id: props.user_id,
+      parent_discussion_id: props.parent_discussion_id,
+      content: props.content,
+    },
+    {
+      headers: {
+        "content-type": "application/json",
+      },
+    }
+  );
+}
+
+export interface propsPostUpIsee {
+  discussion_id: number;
+  user_id: string;
+  count: number;
+}
+export async function postUpIsee(props: propsPostUpIsee) {
+  const checkRequiest = await axios.post(
+    "https://p2-api.flyanyfree.com/discussion/post/up_isee",
+    {
+      discussion_id: props.discussion_id,
+      user_id: props.user_id,
+      count: props.count,
+    },
+    {
+      headers: {
+        "content-type": "application/json",
+      },
+    }
+  );
 }
