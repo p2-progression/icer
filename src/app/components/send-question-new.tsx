@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -13,8 +14,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import {
+  Box,
   Card,
   CardActionArea,
+  CardContent,
   CardMedia,
   Fab,
   FormControl,
@@ -89,62 +92,76 @@ export default function SendQuestionDialog() {
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <AppBar sx={{ position: "relative" }}>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={handleClose}
-              aria-label="close"
-            >
-              <CloseIcon />
-            </IconButton>
-            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              送信画面
-            </Typography>
-            {/* <Button autoFocus color="inherit" onClick={handleClose}>
-              save
-            </Button> */}
-          </Toolbar>
-        </AppBar>
-        <List sx={{ maxWidth: 345, background: "rgba(255,255,255,0.5)" }}>
-          <Card sx={{ maxWidth: 345, background: "rgba(255,255,255,0.5)" }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="500"
-                width="auto"
-                image="/penguin.png"
-                alt="green iguana"
-              />
-            </CardActionArea>
-          </Card>
-          <Paper
-            component="form"
-            sx={{
-              p: "2px 4px",
-              display: "flex",
-              alignItems: "center",
-              width: 400,
-            }}
+        <Box
+          component="div"
+          sx={{ backgroundImage: "linear-gradient(#00a3ff, #ffffff);" }}
+        >
+          <Fab
+            onClick={handleClose}
+            sx={{ position: "fixed", top: 16, right: 16 }}
+            color="primary"
+            aria-label="add"
           >
-            <TextField
-              id="content"
-              label="質問"
-              multiline
-              minRows={2}
-              maxRows={4}
-              value={textForm}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setTextForm(event.target.value);
+            <CloseIcon />
+          </Fab>
+          <Box
+            component="div"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ minWidth: 275, background: "rgba(255,255,255,0)" }}
+          >
+            <Box
+              component="div"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              sx={{ maxWidth: 345 }}
+            >
+              <img
+                width="80%"
+                src="/pengin_re1.png"
+                className="App-logo"
+                alt="logo"
+              />
+            </Box>
+          </Box>
+          <Box
+            component="div"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ minWidth: 275, background: "rgba(255,255,255,0)" }}
+            mb={3}
+          >
+            <Card
+              sx={{
+                maxWidth: 345,
+                minWidth: 275,
+                background: "rgba(255,255,255)",
               }}
-              variant="filled"
-            />
-            <Button onClick={handleSend} variant="contained" endIcon={<Send />}>
-              Send
-            </Button>
-          </Paper>
-        </List>
+            >
+              <CardContent>
+                <TextField
+                  id="content"
+                  label="質問"
+                  multiline
+                  minRows={4}
+                  maxRows={6}
+                  fullWidth
+                  value={textForm}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    setTextForm(event.target.value);
+                  }}
+                  variant="filled"
+                />
+              </CardContent>
+            </Card>
+          </Box>
+          <Button onClick={handleSend} variant="contained" endIcon={<Send />}>
+            Send
+          </Button>
+        </Box>
       </Dialog>
     </React.Fragment>
   );

@@ -22,7 +22,7 @@ import {
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { AnimationMixer } from "three";
-import SendQuestionDialog from "./send-question";
+import SendQuestionDialog from "./send-question-new";
 import SendAnsQuesrion from "./send-ansquestion";
 import {
   RecoilRoot,

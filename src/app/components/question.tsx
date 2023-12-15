@@ -10,15 +10,6 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea, CardMedia } from "@mui/material";
 import Image from "next/image";
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
-
 export const QuestionCard = (props: { content: string }) => {
   return (
     <>

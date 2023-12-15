@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import {
   Avatar,
   Box,
@@ -153,6 +154,7 @@ export default function SendAnsQuesrion() {
                   return <Ansperson key={index} item={ele} />;
                 }
               })}
+              <Box component="div" mt={15}></Box>
             </List>
           </Container>
           <Box
@@ -205,7 +207,7 @@ export default function SendAnsQuesrion() {
                     sx={{ marginLeft: "auto", marginRight: "20px" }}
                     onClick={handleSend}
                     variant="contained"
-                    endIcon={<Send />}
+                    endIcon={<TipsAndUpdatesIcon />}
                   >
                     カイトウ
                   </Button>
