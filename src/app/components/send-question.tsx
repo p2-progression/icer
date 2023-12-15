@@ -107,8 +107,8 @@ export default function SendQuestionDialog() {
             </Button> */}
           </Toolbar>
         </AppBar>
-        <List>
-          <Card sx={{ maxWidth: 345 }}>
+        <List sx={{ maxWidth: 345, background: "rgba(255,255,255,0.5)" }}>
+          <Card sx={{ maxWidth: 345, background: "rgba(255,255,255,0.5)" }}>
             <CardActionArea>
               <CardMedia
                 component="img"

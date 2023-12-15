@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+"use client";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -6,6 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, CardMedia } from "@mui/material";
+import Image from "next/image";
 
 const bull = (
   <Box
@@ -18,24 +21,41 @@ const bull = (
 
 export const QuestionCard = (props: { content: string }) => {
   return (
-    <Card sx={{ minWidth: 275 }}>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="500"
-            width="auto"
-            image="/penguin.png"
-            alt="green iguana"
+    <>
+      <Box
+        component="div"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        sx={{ minWidth: 275, background: "rgba(255,255,255,0)" }}
+      >
+        <Box component="div" sx={{ maxWidth: 345 }}>
+          <img
+            width="100%"
+            src="/pengin_re1.png"
+            className="App-logo"
+            alt="logo"
           />
-        </CardActionArea>
-      </Card>
-
-      <CardContent>
-        <Typography variant="h5" component="div">
-          {props.content}
-        </Typography>
-      </CardContent>
-    </Card>
+        </Box>
+      </Box>
+      <Box
+        component="div"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        sx={{ minWidth: 275, background: "rgba(255,255,255,0)" }}
+        mb={3}
+      >
+        <Card
+          sx={{ maxWidth: 345, minWidth: 275, background: "rgba(255,255,255)" }}
+        >
+          <CardContent>
+            <Typography variant="h5" component="div">
+              {props.content}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box>
+    </>
   );
 };

@@ -4,8 +4,10 @@ import { parentDiscussionId, sendAnsQuestionDialogAtom } from "../recoil/atom";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useLoader } from "@react-three/fiber";
 import { formatGetDiscussionItem } from "../func/api";
-
-export function Pin(props: { item: formatGetDiscussionItem }) {
+// props: {
+//   item: formatGetDiscussionItem;
+// }
+export function Pin() {
   const [hovered, setHover] = useState(false);
   // https://sketchfab.com/3d-models/object10-push-pin-81aadd826c85488180fa3fa2d5f7a0aa
   const gltf = useLoader(GLTFLoader, "/push_pin_fix/scene.gltf");
@@ -29,10 +31,10 @@ export function Pin(props: { item: formatGetDiscussionItem }) {
           position={[0, 0, 0]}
           onPointerOver={() => setHover(true)}
           onPointerOut={() => setHover(false)}
-          // onClick={() => {
-          //   setDiscussionId(7);
-          //   setOpenopenSendQuestionDialog(true);
-          // }}
+          onClick={() => {
+            setDiscussionId(7);
+            setOpenopenSendQuestionDialog(true);
+          }}
           color={hovered ? "hotpink" : "orange"}
           object={gltf.scene}
         />

@@ -14,6 +14,7 @@ import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import {
   Avatar,
+  Box,
   Card,
   CardActionArea,
   CardMedia,
@@ -21,6 +22,7 @@ import {
   Fab,
   FormControl,
   Grid,
+  Grow,
   InputAdornment,
   InputBase,
   InputLabel,
@@ -28,6 +30,7 @@ import {
   OutlinedInput,
   Paper,
   TextField,
+  Zoom,
 } from "@mui/material";
 import { Send, Menu, Search } from "@mui/icons-material";
 import { Ansperson } from "./ans";
@@ -48,7 +51,7 @@ const Transition = React.forwardRef(function Transition(
   },
   ref: React.Ref<unknown>
 ) {
-  return <Slide direction="up" ref={ref} {...props} />;
+  return <Grow ref={ref} {...props} />;
 });
 
 export default function SendAnsQuesrion() {
@@ -98,97 +101,95 @@ export default function SendAnsQuesrion() {
         onClose={handleClose}
         TransitionComponent={Transition}
       >
-        <AppBar sx={{ position: "relative" }}>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={handleClose}
-              aria-label="close"
-            >
-              <CloseIcon />
-            </IconButton>
-            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              回答画面
-            </Typography>
-            {/* <Button autoFocus color="inherit" onClick={handleClose}>
-              save
-            </Button> */}
-          </Toolbar>
-        </AppBar>
-        <Container>
-          <List>
-            <List
-              sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-            >
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>{/* ここに画像 */}</Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary={
-                    discussionAll.find((ele) => ele.is_parent == 1)?.user_id ||
-                    "名無しのペンギン"
-                  }
-                  secondary={dayjs(
-                    discussionAll.find((ele) => ele.is_parent == 1)?.date
-                  ).format("YYYY/MM/DD")}
-                />
-              </ListItem>
-            </List>
+        <Box
+          component="div"
+          sx={{ backgroundImage: "linear-gradient(#00a3ff, #ffffff);" }}
+        >
+          <Fab
+            onClick={handleClose}
+            sx={{ position: "fixed", top: 16, right: 16 }}
+            color="primary"
+            aria-label="add"
+          >
+            <CloseIcon />
+          </Fab>
 
-            {/* ここからメインコンテンツ　 */}
-            <QuestionCard
-              content={
-                discussionAll.find((ele) => ele.is_parent == 1)?.content || ""
-              }
-            />
-
-            {/* 回答をループ */}
-            {discussionAll.map((ele) => {
-              if (ele.is_parent == 0) {
-                return (
-                  <>
-                    <Ansperson item={ele} />
-                  </>
-                );
-              }
-            })}
-            {/* 送信フォーム */}
-            {discussionAll.find((ele) => ele.is_parent == 1)?.user_id !=
-              userName && (
-              <Paper
-                component="form"
+          <Container>
+            <List>
+              <List
                 sx={{
-                  p: "2px 4px",
-                  display: "flex",
-                  alignItems: "center",
-                  width: 400,
+                  width: "100%",
+                  maxWidth: 345,
+                  background: "rgba(255,255,255,0)",
                 }}
               >
-                <TextField
-                  id="content"
-                  label="回答"
-                  multiline
-                  minRows={2}
-                  maxRows={4}
-                  variant="filled"
-                  value={textForm}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    setTextForm(event.target.value);
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>{/* ここに画像 */}</Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={
+                      discussionAll.find((ele) => ele.is_parent == 1)
+                        ?.user_id || "名無しのペンギン"
+                    }
+                    secondary={dayjs(
+                      discussionAll.find((ele) => ele.is_parent == 1)?.date
+                    ).format("YYYY/MM/DD")}
+                  />
+                </ListItem>
+              </List>
+
+              {/* ここからメインコンテンツ　 */}
+              <QuestionCard
+                content={
+                  discussionAll.find((ele) => ele.is_parent == 1)?.content || ""
+                }
+              />
+
+              {/* 回答をループ */}
+
+              {discussionAll.map((ele, index) => {
+                if (ele.is_parent == 0) {
+                  return <Ansperson key={index} item={ele} />;
+                }
+              })}
+
+              {/* 送信フォーム */}
+              {discussionAll.find((ele) => ele.is_parent == 1)?.user_id !=
+                userName && (
+                <Paper
+                  component="form"
+                  sx={{
+                    p: "2px 4px",
+                    display: "flex",
+                    alignItems: "center",
+                    width: 400,
                   }}
-                />
-                <Button
-                  onClick={handleSend}
-                  variant="contained"
-                  endIcon={<Send />}
                 >
-                  Send
-                </Button>
-              </Paper>
-            )}
-          </List>
-        </Container>
+                  <TextField
+                    id="content"
+                    label="カイトウ"
+                    multiline
+                    minRows={2}
+                    maxRows={4}
+                    variant="filled"
+                    value={textForm}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                      setTextForm(event.target.value);
+                    }}
+                  />
+                  <Button
+                    onClick={handleSend}
+                    variant="contained"
+                    endIcon={<Send />}
+                  >
+                    Send
+                  </Button>
+                </Paper>
+              )}
+            </List>
+          </Container>
+        </Box>
       </Dialog>
     </React.Fragment>
   );

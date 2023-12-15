@@ -115,7 +115,7 @@ export default function App() {
           <ambientLight intensity={1.5} />
           <directionalLight color="" position={[0, 0, 10]} />
           <directionalLight color="#ffffff" position={[0, 0, -10]} />
-          {/* <Pin  /> */}
+          <Pin />
           <TheModel />
           <Background />
           <OrbitControls enablePan={false}></OrbitControls>
