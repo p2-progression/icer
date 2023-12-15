@@ -154,37 +154,39 @@ export default function SendAnsQuesrion() {
                 );
               }
             })}
-
             {/* 送信フォーム */}
-            <Paper
-              component="form"
-              sx={{
-                p: "2px 4px",
-                display: "flex",
-                alignItems: "center",
-                width: 400,
-              }}
-            >
-              <TextField
-                id="content"
-                label="回答"
-                multiline
-                minRows={2}
-                maxRows={4}
-                variant="filled"
-                value={textForm}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  setTextForm(event.target.value);
+            {discussionAll.find((ele) => ele.is_parent == 1)?.user_id !=
+              userName && (
+              <Paper
+                component="form"
+                sx={{
+                  p: "2px 4px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: 400,
                 }}
-              />
-              <Button
-                onClick={handleSend}
-                variant="contained"
-                endIcon={<Send />}
               >
-                Send
-              </Button>
-            </Paper>
+                <TextField
+                  id="content"
+                  label="回答"
+                  multiline
+                  minRows={2}
+                  maxRows={4}
+                  variant="filled"
+                  value={textForm}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    setTextForm(event.target.value);
+                  }}
+                />
+                <Button
+                  onClick={handleSend}
+                  variant="contained"
+                  endIcon={<Send />}
+                >
+                  Send
+                </Button>
+              </Paper>
+            )}
           </List>
         </Container>
       </Dialog>
