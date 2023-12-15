@@ -23,7 +23,7 @@ export default function FormDialog() {
     if (userName == null) {
       setOpen(true);
     }
-  }, [userName]);
+  }, [userName, open]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -51,15 +51,14 @@ export default function FormDialog() {
 
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
         ユーザー設定
-      </Button>
+      </Button> */}
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>ユーザー登録</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
+            すでに登録している場合は、nameだけでok
           </DialogContentText>
           <TextField
             autoFocus
@@ -89,8 +88,8 @@ export default function FormDialog() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSubmit}>Subscribe</Button>
+          {/* <Button onClick={handleClose}>Cancel</Button> */}
+          <Button onClick={handleSubmit}>進む</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

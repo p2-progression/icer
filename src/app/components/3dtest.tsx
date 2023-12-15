@@ -1,42 +1,19 @@
 "use client";
-
-import {
-  Box,
-  OrbitControls,
-  Stage,
-  Sky,
-  Stars,
-  TransformControls,
-} from "@react-three/drei";
-import { Canvas, ThreeElements, useFrame } from "@react-three/fiber";
-import { useRef, useState } from "react";
+import { OrbitControls, Sky } from "@react-three/drei";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useState } from "react";
 import React from "react";
-import {
-  Bloom,
-  DepthOfField,
-  EffectComposer,
-  Grid,
-  Noise,
-  Vignette,
-} from "@react-three/postprocessing";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { AnimationMixer } from "three";
 import SendQuestionDialog from "./send-question-new";
 import SendAnsQuesrion from "./send-ansquestion";
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
+import { RecoilRoot, useRecoilState } from "recoil";
 import FormDialog from "./setuser";
 import { ApiAutoUpdate } from "../func/api";
 import {
   parentDiscussionIdAtom,
   sendAnsQuestionDialogAtom,
-  sendQuestionDialogAtom,
 } from "../recoil/atom";
 import { Pin, randomPosition } from "./pin";
 

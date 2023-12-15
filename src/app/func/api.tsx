@@ -10,10 +10,12 @@ import {
 import {
   getdiscussionAllDataAtom,
   parentDiscussionIdAtom,
+  parentDiscussionIseeLevelAtom,
   userNameAtom,
 } from "../recoil/atom";
 import axios from "axios";
 import { Button } from "@mui/material";
+import { iseeCheck } from "./isee";
 
 export function ApiAutoUpdate() {
   const [userName, setUserName] = useRecoilState(userNameAtom);
@@ -23,6 +25,9 @@ export function ApiAutoUpdate() {
   const [discussionAll, setDiscussionAll] = useRecoilState(
     getdiscussionAllDataAtom
   );
+  const [discussionLevel, setDiscussionLevel] = useRecoilState(
+    parentDiscussionIseeLevelAtom
+  );
 
   // discussionIdに変更があるたびデータを取得し直す
   useEffect(() => {
@@ -30,6 +35,8 @@ export function ApiAutoUpdate() {
       if (discussionId !== null) {
         const getdata = await getDiscussionAll(discussionId);
         setDiscussionAll(getdata);
+        // IseeLevelを更新
+        setDiscussionLevel(iseeCheck(getdata));
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps

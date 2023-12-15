@@ -92,7 +92,7 @@ export function Pin(props: {
           onPointerOver={() => setHover(true)}
           onPointerOut={() => setHover(false)}
           onClick={() => {
-            setDiscussionId(7);
+            setDiscussionId(57);
             setOpenopenSendQuestionDialog(true);
           }}
           color={hovered ? "hotpink" : "orange"}

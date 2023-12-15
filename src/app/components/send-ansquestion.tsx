@@ -39,6 +39,7 @@ import { QuestionCard } from "./question";
 import {
   getdiscussionAllDataAtom,
   parentDiscussionIdAtom,
+  parentDiscussionIseeLevelAtom,
   sendAnsQuestionDialogAtom,
   userNameAtom,
 } from "../recoil/atom";
@@ -66,7 +67,9 @@ export default function SendAnsQuesrion() {
   const [discussionId, setDiscussionId] = useRecoilState(
     parentDiscussionIdAtom
   );
-
+  const [discussionLevel, setDiscussionLevel] = useRecoilState(
+    parentDiscussionIseeLevelAtom
+  );
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -151,7 +154,7 @@ export default function SendAnsQuesrion() {
               />
 
               {/* 回答をループ */}
-              <h1>level:{iseeCheck(discussionAll)}</h1>
+              <h1>level:{discussionLevel}</h1>
 
               {discussionAll.map((ele, index) => {
                 if (ele.is_parent == 0) {
