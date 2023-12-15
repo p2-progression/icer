@@ -90,6 +90,14 @@ export async function getDiscussionAll(
   );
   return getRequest.data;
 }
+export async function getDiscussionItemsRandom(
+  offset: number
+): Promise<formatGetDiscussionItem[]> {
+  const getRequest = await axios.get(
+    `https://p2-api.flyanyfree.com/discussion/get/random/?offset=${offset}`
+  );
+  return getRequest.data;
+}
 
 export interface propsPostCreateDiscussion {
   user_id: string;

@@ -38,7 +38,7 @@ import {
   sendAnsQuestionDialogAtom,
   sendQuestionDialogAtom,
 } from "../recoil/atom";
-import { Pin } from "./pin";
+import { Pin, randomPosition } from "./pin";
 
 function Scene() {
   const [hovered, setHover] = useState(false);
@@ -115,7 +115,12 @@ export default function App() {
           <ambientLight intensity={1.5} />
           <directionalLight color="" position={[0, 0, 10]} />
           <directionalLight color="#ffffff" position={[0, 0, -10]} />
-          <Pin />
+          <Pin color="blue" key={"1"} randomPositionTmp={randomPosition[0]} />
+
+          <Pin color="blue" key={"2"} randomPositionTmp={randomPosition[1]} />
+          <Pin color="blue" key={"3"} randomPositionTmp={randomPosition[2]} />
+          <Pin color="orange" key={"3"} randomPositionTmp={randomPosition[3]} />
+          {/* <Pin key={"4"} randomPositionTmp={randomPosition[4]} /> */}
           <TheModel />
           <Background />
           <OrbitControls enablePan={false}></OrbitControls>
