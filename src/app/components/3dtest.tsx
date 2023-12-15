@@ -1,6 +1,13 @@
 "use client";
 
-import { Box, OrbitControls, Stage, Sky, Stars } from "@react-three/drei";
+import {
+  Box,
+  OrbitControls,
+  Stage,
+  Sky,
+  Stars,
+  TransformControls,
+} from "@react-three/drei";
 import { Canvas, ThreeElements, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import React from "react";
@@ -31,6 +38,7 @@ import {
   sendAnsQuestionDialogAtom,
   sendQuestionDialogAtom,
 } from "../recoil/atom";
+import { Pin } from "./pin";
 
 function Scene() {
   const [hovered, setHover] = useState(false);
@@ -57,9 +65,11 @@ function Scene() {
     />
   );
 }
+
 function TheModel() {
   let mixer: any = null;
   const { scene, animations } = useLoader(GLTFLoader, "/scene.gltf");
+  scene.position.set(0, 0, 0);
   // console.log(scene);
   mixer = new AnimationMixer(scene);
   void mixer.clipAction(animations[0]).play();
@@ -105,10 +115,10 @@ export default function App() {
           <ambientLight intensity={1.5} />
           <directionalLight color="" position={[0, 0, 10]} />
           <directionalLight color="#ffffff" position={[0, 0, -10]} />
-          <Scene />
+          {/* <Pin  /> */}
           <TheModel />
           <Background />
-          <OrbitControls></OrbitControls>
+          <OrbitControls enablePan={false}></OrbitControls>
         </Canvas>
       </RecoilRoot>
     </>
