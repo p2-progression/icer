@@ -79,32 +79,30 @@ function Background() {
 
 export default function App() {
   return (
-    <>
-      <RecoilRoot>
-        <ApiAutoUpdate />
-        <FormDialog />
-        <SendQuestionDialog />
-        <SendAnsQuesrion />
-        <Canvas
-          style={{ width: "100vw", height: "100vh" }}
-          shadows
-          camera={{ fov: 50, zoom: 3 }}
-          flat
-        >
-          <ambientLight intensity={1.5} />
-          <directionalLight color="" position={[0, 0, 10]} />
-          <directionalLight color="#ffffff" position={[0, 0, -10]} />
-          <Pin color="blue" key={"1"} randomPositionTmp={randomPosition[0]} />
+    <RecoilRoot>
+      <ApiAutoUpdate />
+      <FormDialog />
+      <SendQuestionDialog />
+      <SendAnsQuesrion />
+      <Canvas
+        style={{ width: "100vw", height: "100vh" }}
+        shadows
+        camera={{ fov: 50, zoom: 3 }}
+        flat
+      >
+        <ambientLight intensity={1.5} />
+        <directionalLight color="" position={[0, 0, 10]} />
+        <directionalLight color="#ffffff" position={[0, 0, -10]} />
+        <Pin color="blue" key={"1"} randomPositionTmp={randomPosition[0]} />
 
-          <Pin color="blue" key={"2"} randomPositionTmp={randomPosition[1]} />
-          <Pin color="blue" key={"3"} randomPositionTmp={randomPosition[2]} />
-          <Pin color="orange" key={"3"} randomPositionTmp={randomPosition[3]} />
-          {/* <Pin key={"4"} randomPositionTmp={randomPosition[4]} /> */}
-          <TheModel />
-          <Background />
-          <OrbitControls enablePan={false}></OrbitControls>
-        </Canvas>
-      </RecoilRoot>
-    </>
+        <Pin color="blue" key={"2"} randomPositionTmp={randomPosition[1]} />
+        <Pin color="blue" key={"3"} randomPositionTmp={randomPosition[2]} />
+        <Pin color="orange" key={"3"} randomPositionTmp={randomPosition[3]} />
+        {/* <Pin key={"4"} randomPositionTmp={randomPosition[4]} /> */}
+        <TheModel />
+        <Background />
+        <OrbitControls enablePan={false}></OrbitControls>
+      </Canvas>
+    </RecoilRoot>
   );
 }

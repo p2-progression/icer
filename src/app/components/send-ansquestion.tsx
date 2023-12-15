@@ -154,7 +154,11 @@ export default function SendAnsQuesrion() {
               />
 
               {/* 回答をループ */}
-              <h1>level:{discussionLevel}</h1>
+              <h1>
+                level:
+                {discussionAll.find((ele) => ele.is_parent == 1)?.isee_level ||
+                  0}
+              </h1>
 
               {discussionAll.map((ele, index) => {
                 if (ele.is_parent == 0) {

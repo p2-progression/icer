@@ -78,6 +78,7 @@ export interface formatGetDiscussionItem {
   user_id: string;
   isee: number;
   bad: number;
+  isee_level: number;
   content: string;
   date: string;
 }
@@ -152,6 +153,7 @@ export async function postCreateChild(props: propsPostCreateChild) {
 }
 
 export interface propsPostUpIsee {
+  parent_discussion_id: number;
   discussion_id: number;
   user_id: string;
   count: number;
@@ -160,6 +162,7 @@ export async function postUpIsee(props: propsPostUpIsee) {
   const checkRequiest = await axios.post(
     "https://p2-api.flyanyfree.com/discussion/post/up_isee",
     {
+      parent_discussion_id: props.parent_discussion_id,
       discussion_id: props.discussion_id,
       user_id: props.user_id,
       count: props.count,
