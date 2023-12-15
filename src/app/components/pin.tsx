@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { parentDiscussionId, sendAnsQuestionDialogAtom } from "../recoil/atom";
+import {
+  parentDiscussionIdAtom,
+  sendAnsQuestionDialogAtom,
+} from "../recoil/atom";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useLoader } from "@react-three/fiber";
 import { formatGetDiscussionItem } from "../func/api";
@@ -60,7 +63,9 @@ export function Pin(props: {
   );
 
   // gltf.scene.lookAt(0, 0, 0);
-  const [discussionId, setDiscussionId] = useRecoilState(parentDiscussionId);
+  const [discussionId, setDiscussionId] = useRecoilState(
+    parentDiscussionIdAtom
+  );
   const [openSendQuestionDialog, setOpenopenSendQuestionDialog] =
     useRecoilState(sendAnsQuestionDialogAtom);
   // gltf.scene.position.set();

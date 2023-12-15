@@ -21,7 +21,7 @@ import {
 } from "../func/api";
 import {
   getdiscussionAllDataAtom,
-  parentDiscussionId,
+  parentDiscussionIdAtom,
   userNameAtom,
 } from "../recoil/atom";
 import { useRecoilState } from "recoil";
@@ -48,7 +48,9 @@ export const Ansperson = (props: { item: formatGetDiscussionItem }) => {
   const [discussionAll, setDiscussionAll] = useRecoilState(
     getdiscussionAllDataAtom
   );
-  const [discussionId, setDiscussionId] = useRecoilState(parentDiscussionId);
+  const [discussionId, setDiscussionId] = useRecoilState(
+    parentDiscussionIdAtom
+  );
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };

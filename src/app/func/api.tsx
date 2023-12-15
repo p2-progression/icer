@@ -9,7 +9,7 @@ import {
 } from "recoil";
 import {
   getdiscussionAllDataAtom,
-  parentDiscussionId,
+  parentDiscussionIdAtom,
   userNameAtom,
 } from "../recoil/atom";
 import axios from "axios";
@@ -17,7 +17,9 @@ import { Button } from "@mui/material";
 
 export function ApiAutoUpdate() {
   const [userName, setUserName] = useRecoilState(userNameAtom);
-  const [discussionId, setDiscussionId] = useRecoilState(parentDiscussionId);
+  const [discussionId, setDiscussionId] = useRecoilState(
+    parentDiscussionIdAtom
+  );
   const [discussionAll, setDiscussionAll] = useRecoilState(
     getdiscussionAllDataAtom
   );

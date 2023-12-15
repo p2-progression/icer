@@ -34,7 +34,7 @@ import {
 import FormDialog from "./setuser";
 import { ApiAutoUpdate } from "../func/api";
 import {
-  parentDiscussionId,
+  parentDiscussionIdAtom,
   sendAnsQuestionDialogAtom,
   sendQuestionDialogAtom,
 } from "../recoil/atom";
@@ -48,7 +48,9 @@ function Scene() {
   gltf.scene.position.set(0.23, 0.23, 0.23);
 
   gltf.scene.lookAt(0, 1, 0);
-  const [discussionId, setDiscussionId] = useRecoilState(parentDiscussionId);
+  const [discussionId, setDiscussionId] = useRecoilState(
+    parentDiscussionIdAtom
+  );
   const [openSendQuestionDialog, setOpenopenSendQuestionDialog] =
     useRecoilState(sendAnsQuestionDialogAtom);
   // gltf.scene.position.set();

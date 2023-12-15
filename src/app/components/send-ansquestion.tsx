@@ -38,13 +38,14 @@ import { Ansperson } from "./ans";
 import { QuestionCard } from "./question";
 import {
   getdiscussionAllDataAtom,
-  parentDiscussionId,
+  parentDiscussionIdAtom,
   sendAnsQuestionDialogAtom,
   userNameAtom,
 } from "../recoil/atom";
 import { useRecoilState } from "recoil";
 import dayjs from "dayjs";
 import { getDiscussionAll, postCreateChild } from "../func/api";
+import { iseeCheck } from "../func/isee";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -62,7 +63,9 @@ export default function SendAnsQuesrion() {
   const [discussionAll, setDiscussionAll] = useRecoilState(
     getdiscussionAllDataAtom
   );
-  const [discussionId, setDiscussionId] = useRecoilState(parentDiscussionId);
+  const [discussionId, setDiscussionId] = useRecoilState(
+    parentDiscussionIdAtom
+  );
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -148,6 +151,7 @@ export default function SendAnsQuesrion() {
               />
 
               {/* 回答をループ */}
+              <h1>level:{iseeCheck(discussionAll)}</h1>
 
               {discussionAll.map((ele, index) => {
                 if (ele.is_parent == 0) {

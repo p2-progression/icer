@@ -31,7 +31,7 @@ import {
 } from "@mui/material";
 import { Send, Menu, Search } from "@mui/icons-material";
 import {
-  parentDiscussionId,
+  parentDiscussionIdAtom,
   sendAnsQuestionDialogAtom,
   sendQuestionDialogAtom,
   userNameAtom,
@@ -53,7 +53,9 @@ export default function SendQuestionDialog() {
   const [userName, setUserName] = useRecoilState(userNameAtom);
   const [openSendQuestionDialog, setOpenopenSendQuestionDialog] =
     useRecoilState(sendQuestionDialogAtom);
-  const [discussionId, setDiscussionId] = useRecoilState(parentDiscussionId);
+  const [discussionId, setDiscussionId] = useRecoilState(
+    parentDiscussionIdAtom
+  );
   const [sendAnsQuestionDialog, setsendAnsQuestionDialog] = useRecoilState(
     sendAnsQuestionDialogAtom
   );

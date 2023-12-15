@@ -9,19 +9,19 @@ import {
 } from "recoil";
 import { formatGetDiscussionItem } from "../func/api";
 export const userNameAtom = atom<string | null>({
-  key: "userName", // unique ID (with respect to other atoms/selectors)
+  key: "userNameAtom", // unique ID (with respect to other atoms/selectors)
   default: null, // default value (aka initial value)
 });
 export const displayUserNameAtom = atom<string | null>({
-  key: "displayUserName", // unique ID (with respect to other atoms/selectors)
+  key: "displayUserNameAtom", // unique ID (with respect to other atoms/selectors)
   default: null, // default value (aka initial value)
 });
 
 /**
  * 親discussionのIDを管理
  */
-export const parentDiscussionId = atom<number | null>({
-  key: "parentDiscussionId", // unique ID (with respect to other atoms/selectors)
+export const parentDiscussionIdAtom = atom<number | null>({
+  key: "parentDiscussionIdAtom", // unique ID (with respect to other atoms/selectors)
   default: null, // default value (aka initial value)
 });
 
