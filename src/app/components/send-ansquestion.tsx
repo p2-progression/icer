@@ -153,7 +153,20 @@ export default function SendAnsQuesrion() {
                   return <Ansperson key={index} item={ele} />;
                 }
               })}
-
+            </List>
+          </Container>
+          <Box
+            component="div"
+            sx={{ position: "fixed", bottom: 16, left: 16, width: "100%" }}
+          >
+            <Box
+              component="div"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              sx={{ minWidth: 275, background: "rgba(255,255,255,0)" }}
+              my={2}
+            >
               {/* 送信フォーム */}
               {discussionAll.find((ele) => ele.is_parent == 1)?.user_id !=
                 userName && (
@@ -170,7 +183,7 @@ export default function SendAnsQuesrion() {
                     id="content"
                     label="カイトウ"
                     multiline
-                    minRows={2}
+                    minRows={1}
                     maxRows={4}
                     variant="filled"
                     value={textForm}
@@ -187,8 +200,8 @@ export default function SendAnsQuesrion() {
                   </Button>
                 </Paper>
               )}
-            </List>
-          </Container>
+            </Box>
+          </Box>
         </Box>
       </Dialog>
     </React.Fragment>

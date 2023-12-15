@@ -94,12 +94,22 @@ export const Ansperson = (props: { item: formatGetDiscussionItem }) => {
         <CardActions disableSpacing>
           <Button
             sx={{
+              marginLeft: "auto",
+              marginRight: "20px",
+              marginBottom: "20px",
               borderRadius: "30px",
               fontFamily: `"gigalypse", sans-serif`,
               fontWeight: 800,
               fontStyle: "normal",
               fontSize: "20px",
               padding: "5px 20px",
+              color: " #333333",
+              backgroundColor: " #cff0ff",
+              boxShadow:
+                "5px 5px 0px 0px rgba(62, 134, 128, 0.28), 10px 10px 0px 0px rgba(65, 100, 95, 0.07), 15px 15px 0px 0px rgba(21, 77, 181, 0.1), 20px 20px 0px 0px rgba(114, 255, 228, 0.5);",
+              ":hover": {
+                backgroundColor: " #cff0ff",
+              },
             }}
             variant="contained"
           >
