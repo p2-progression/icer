@@ -29,9 +29,15 @@ export const QuestionCard = (props: { content: string }) => {
         alignItems="center"
         sx={{ minWidth: 275, background: "rgba(255,255,255,0)" }}
       >
-        <Box component="div" sx={{ maxWidth: 345 }}>
+        <Box
+          component="div"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{ maxWidth: 345 }}
+        >
           <img
-            width="100%"
+            width="80%"
             src="/pengin_re1.png"
             className="App-logo"
             alt="logo"

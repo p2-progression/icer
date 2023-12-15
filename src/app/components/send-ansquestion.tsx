@@ -118,6 +118,9 @@ export default function SendAnsQuesrion() {
             <List>
               <List
                 sx={{
+                  position: "absolute",
+                  top: 16,
+                  left: 0,
                   width: "100%",
                   maxWidth: 345,
                   background: "rgba(255,255,255,0)",
@@ -132,14 +135,11 @@ export default function SendAnsQuesrion() {
                       discussionAll.find((ele) => ele.is_parent == 1)
                         ?.user_id || "名無しのペンギン"
                     }
-                    secondary={dayjs(
-                      discussionAll.find((ele) => ele.is_parent == 1)?.date
-                    ).format("YYYY/MM/DD")}
                   />
                 </ListItem>
               </List>
-
-              {/* ここからメインコンテンツ　 */}
+              <Box my={8} component="div"></Box>
+              {/* ここからメインコンテンツ */}
               <QuestionCard
                 content={
                   discussionAll.find((ele) => ele.is_parent == 1)?.content || ""
@@ -157,7 +157,12 @@ export default function SendAnsQuesrion() {
           </Container>
           <Box
             component="div"
-            sx={{ position: "fixed", bottom: 16, left: 16, width: "100%" }}
+            px={1}
+            sx={{
+              position: "fixed",
+              bottom: 10,
+              width: "100%",
+            }}
           >
             <Box
               component="div"
@@ -173,18 +178,23 @@ export default function SendAnsQuesrion() {
                 <Paper
                   component="form"
                   sx={{
-                    p: "2px 4px",
                     display: "flex",
                     alignItems: "center",
                     width: 400,
+                    boxShadow: 3,
                   }}
                 >
                   <TextField
+                    sx={{
+                      margin: "10px 5px 10px 5px",
+                      width: "50%",
+                      height: "auto",
+                    }}
                     id="content"
                     label="カイトウ"
                     multiline
                     minRows={1}
-                    maxRows={4}
+                    maxRows={6}
                     variant="filled"
                     value={textForm}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -192,11 +202,12 @@ export default function SendAnsQuesrion() {
                     }}
                   />
                   <Button
+                    sx={{ marginLeft: "auto", marginRight: "20px" }}
                     onClick={handleSend}
                     variant="contained"
                     endIcon={<Send />}
                   >
-                    Send
+                    カイトウ
                   </Button>
                 </Paper>
               )}

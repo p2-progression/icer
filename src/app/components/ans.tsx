@@ -89,10 +89,10 @@ export const Ansperson = (props: { item: formatGetDiscussionItem }) => {
           <Typography variant="body2" color="text.secondary">
             {props.item.content}
           </Typography>
-          <h6>isee数:{props.item.isee}</h6>
         </CardContent>
         <CardActions disableSpacing>
           <Button
+            onClick={handleUpIsee}
             sx={{
               marginLeft: "auto",
               marginRight: "20px",
@@ -103,6 +103,7 @@ export const Ansperson = (props: { item: formatGetDiscussionItem }) => {
               fontStyle: "normal",
               fontSize: "20px",
               padding: "5px 20px",
+              width: "150px",
               color: " #333333",
               backgroundColor: " #cff0ff",
               boxShadow:
@@ -113,7 +114,7 @@ export const Ansperson = (props: { item: formatGetDiscussionItem }) => {
             }}
             variant="contained"
           >
-            I SEE
+            I SEE {props.item.isee}
           </Button>
         </CardActions>
       </Card>
