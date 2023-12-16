@@ -17,14 +17,10 @@ import {
   parentDiscussionRandomAtom,
   sendAnsQuestionDialogAtom,
 } from "../recoil/atom";
-import {
-  Pin,
-  blueRandomPosition,
-  redRandomPosition,
-  typeRandomPosition,
-} from "./pin";
+import { Pin } from "./pin";
 import { Alert, Snackbar } from "@mui/material";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
+import { blueRandomPosition, redRandomPosition } from "./pinposition";
 
 function Scene() {
   const [hovered, setHover] = useState(false);
@@ -116,8 +112,29 @@ export default function App() {
           ...parentDiscussionItems,
           ...parentDiscussionItems,
           ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
         ]
-          .slice(0, 40)
+          .slice(0, 36)
           .filter((e) => e.isee_level > 1)
           .map((ele, index) => {
             return (
