@@ -149,6 +149,7 @@ export default function SendQuestionDialog() {
                 fontSize: "30px",
                 backgroundImage: "url(/back.png)",
                 backgroundSize: "cover",
+                textShadow: "#3558AE 1px 0 10px;",
               }}
               onClick={handleClickOpen}
               variant="contained"
@@ -255,6 +256,7 @@ export default function SendQuestionDialog() {
                 fontSize: "30px",
                 backgroundImage: "url(/back.png)",
                 backgroundSize: "cover",
+                textShadow: "#4172AC 1px 0 10px;",
               }}
               onClick={handleSend}
               variant="contained"
