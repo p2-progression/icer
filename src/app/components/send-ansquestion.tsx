@@ -138,22 +138,14 @@ export default function SendAnsQuesrion() {
                   maxWidth: 345,
                   background: "rgba(255,255,255,0)",
                 }}
-              >
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>{/* ここに画像 */}</Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={
-                      discussionAll.find((ele) => ele.is_parent == 1)
-                        ?.user_id || "名無しのペンギン"
-                    }
-                  />
-                </ListItem>
-              </List>
-              <Box my={8} component="div"></Box>
+              ></List>
+              {/* <Box my={8} component="div"></Box> */}
               {/* ここからメインコンテンツ */}
               <QuestionCard
+                name={
+                  discussionAll.find((ele) => ele.is_parent == 1)?.user_id ||
+                  "名無しのペンギン"
+                }
                 content={
                   discussionAll.find((ele) => ele.is_parent == 1) || null
                 }

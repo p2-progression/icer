@@ -13,6 +13,7 @@ import Image from "next/image";
 import { formatGetDiscussionItem } from "../func/api";
 
 export const QuestionCard = (props: {
+  name: string;
   content: formatGetDiscussionItem | null;
 }) => {
   return (
@@ -40,6 +41,7 @@ export const QuestionCard = (props: {
             />
           </Box>
         )}
+
         {props.content !== null && props.content?.isee_level == 2 && (
           <Box
             component="div"
@@ -121,6 +123,19 @@ export const QuestionCard = (props: {
               {props.content?.content}
             </Typography>
           </CardContent>
+          <CardActions>
+            <Typography
+              textAlign="right"
+              sx={{
+                marginRight: 0,
+                paddingRight: "15px",
+                width: "100%",
+                color: "rgba(0,0,0,0.5)",
+              }}
+            >
+              {props.name}
+            </Typography>
+          </CardActions>
         </Card>
       </Box>
     </>

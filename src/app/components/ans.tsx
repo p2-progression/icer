@@ -26,7 +26,7 @@ import {
   userNameAtom,
 } from "../recoil/atom";
 import { useRecoilState } from "recoil";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -91,9 +91,16 @@ export const Ansperson = (props: { item: formatGetDiscussionItem }) => {
     >
       <Card sx={{ width: "100%", maxWidth: 345 }}>
         <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            {props.item.content}
-          </Typography>
+          <Stack direction="row" spacing={2}>
+            <Avatar
+              sx={{ width: 50, height: 50 }}
+              alt=""
+              src="/user_icon/user1_box.png"
+            />
+            <Typography pt="6px" variant="body2" color="text.secondary">
+              {props.item.content}
+            </Typography>
+          </Stack>
         </CardContent>
         <CardActions disableSpacing>
           <Button
