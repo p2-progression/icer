@@ -224,9 +224,21 @@ export default function SendQuestionDialog() {
               </CardContent>
             </Card>
           </Box>
-          <Button onClick={handleSend} variant="contained" endIcon={<Send />}>
-            Send
-          </Button>
+          <Box component="div" px={5} sx={{ width: "100%" }}>
+            <Button
+              sx={{
+                marginLeft: "auto",
+                // marginRight: "10px",
+                // paddingRight: "10px",
+                width: "100%",
+              }}
+              onClick={handleSend}
+              variant="contained"
+              // startIcon={<TipsAndUpdatesIcon />}
+            >
+              凍稿する
+            </Button>
+          </Box>
         </Box>
       </Dialog>
     </React.Fragment>
