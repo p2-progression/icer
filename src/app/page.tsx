@@ -9,6 +9,9 @@ export default function Home() {
   return (
     <main>
       <Head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icon.png"></link>
         <link rel="stylesheet" href="https://use.typekit.net/hao5cgh.css" />
       </Head>
       <CSR>
