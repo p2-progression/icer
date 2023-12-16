@@ -3,6 +3,7 @@ import Image from "next/image";
 import App from "./components/3dtest";
 import Head from "next/head";
 import { RecoilRoot } from "recoil";
+import CSR from "./csr/CSR";
 
 export default function Home() {
   return (
@@ -10,9 +11,11 @@ export default function Home() {
       <Head>
         <link rel="stylesheet" href="https://use.typekit.net/hao5cgh.css" />
       </Head>
-      <RecoilRoot>
-        <App />
-      </RecoilRoot>
+      <CSR>
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
+      </CSR>
     </main>
   );
 }
