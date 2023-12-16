@@ -8,13 +8,13 @@ import {
   useRecoilValue,
 } from "recoil";
 import { formatGetDiscussionItem } from "../func/api";
-export const userNameAtom = atom<string | null>({
+export const userNameAtom = atom<string>({
   key: "userNameAtom", // unique ID (with respect to other atoms/selectors)
-  default: null, // default value (aka initial value)
+  default: "", // default value (aka initial value)
 });
 export const displayUserNameAtom = atom<string | null>({
   key: "displayUserNameAtom", // unique ID (with respect to other atoms/selectors)
-  default: null, // default value (aka initial value)
+  default: "ぺんぎん", // default value (aka initial value)
 });
 
 /**

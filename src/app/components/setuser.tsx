@@ -22,9 +22,11 @@ export default function FormDialog() {
     useRecoilState(displayUserNameAtom);
   const [nameForm, setNameForm] = React.useState("");
   const [openTips, setOpenTips] = useRecoilState(openTipsAtom);
+
+  const [errorNull, setErrorNull] = React.useState(false);
   // UserNameがからの時このダイアログをひらく
   React.useEffect(() => {
-    if (userName == null) {
+    if (userName == "") {
       setOpen(true);
     }
   }, [userName, open]);
@@ -37,20 +39,25 @@ export default function FormDialog() {
     setOpen(false);
   };
   const handleSubmit = async () => {
-    const checkRequest = await checkUserName(nameForm);
-    if (checkRequest.status == "ok") {
-      setUserName(nameForm);
-      setDisplayUserName(checkRequest.userdata.display_username);
-      setOpen(false);
-      setOpenTips(true);
-    } else {
-      if (displayUserName != "") {
+    console.log(userName);
+
+    if (nameForm != "") {
+      setErrorNull(false);
+      const checkRequest = await checkUserName(nameForm);
+      if (checkRequest.status == "ok") {
+        setUserName(nameForm);
+        setDisplayUserName(checkRequest.userdata.display_username);
+        setOpen(false);
+        setOpenTips(true);
+      } else {
         const createRequest = await createUser(
           nameForm,
           String(displayUserName)
         );
         setUserName(nameForm);
       }
+    } else {
+      setErrorNull(true);
     }
   };
 
@@ -62,14 +69,12 @@ export default function FormDialog() {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>ユーザー登録</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            すでに登録している場合は、nameだけでok
-          </DialogContentText>
+          <DialogContentText>10文字以内で設定できます</DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="name"
+            label="名前"
             type="text"
             fullWidth
             variant="standard"
@@ -77,8 +82,10 @@ export default function FormDialog() {
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setNameForm(event.target.value);
             }}
+            error={errorNull}
+            helperText={errorNull && "ユーザー名を入力してください"}
           />
-          <TextField
+          {/* <TextField
             margin="dense"
             id="name"
             label="displayUserName"
@@ -89,7 +96,7 @@ export default function FormDialog() {
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setDisplayUserName(event.target.value);
             }}
-          />
+          /> */}
         </DialogContent>
         <DialogActions>
           {/* <Button onClick={handleClose}>Cancel</Button> */}

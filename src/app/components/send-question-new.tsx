@@ -139,7 +139,7 @@ export default function SendQuestionDialog() {
             <Button
               sx={{
                 marginLeft: "auto",
-                // marginRight: "10px",
+                marginRight: "auto",
                 // paddingRight: "10px",
                 width: "100%",
                 maxWidth: 345,
