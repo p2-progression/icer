@@ -20,6 +20,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icon.png"></link>
+        <link rel="stylesheet" href="https://use.typekit.net/hao5cgh.css" />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
