@@ -74,7 +74,6 @@ export default function FormDialog() {
             }}
           />
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="displayUserName"

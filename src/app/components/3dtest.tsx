@@ -118,8 +118,7 @@ export default function App() {
     <>
       <ApiAutoUpdate />
       <FormDialog />
-      <SendQuestionDialog />
-      <SendAnsQuesrion />
+
       <Canvas
         style={{ width: "100vw", height: "100vh" }}
         shadows
@@ -144,6 +143,8 @@ export default function App() {
         <Background />
         <OrbitControls enablePan={false}></OrbitControls>
       </Canvas>
+      <SendQuestionDialog />
+      <SendAnsQuesrion />
     </>
   );
 }

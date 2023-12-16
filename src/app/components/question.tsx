@@ -8,7 +8,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { CardActionArea, CardMedia } from "@mui/material";
+import { CardActionArea, CardMedia, Paper } from "@mui/material";
 import Image from "next/image";
 
 export const QuestionCard = (props: { content: string }) => {

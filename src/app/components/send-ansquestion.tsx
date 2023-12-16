@@ -95,14 +95,14 @@ export default function SendAnsQuesrion() {
   };
   return (
     <React.Fragment>
-      <Fab
+      {/* <Fab
         onClick={handleClickOpen}
         sx={{ position: "absolute", bottom: 16, left: 16 }}
         color="primary"
         aria-label="add"
       >
         <CloseIcon />
-      </Fab>
+      </Fab> */}
       <Dialog
         fullScreen
         open={open}
@@ -202,10 +202,12 @@ export default function SendAnsQuesrion() {
                     sx={{
                       margin: "10px 5px 10px 5px",
                       width: "50%",
+                      minWidth: "58%",
                       height: "auto",
+                      paddingRight: "0px",
                     }}
                     id="content"
-                    label="カイトウ"
+                    label=""
                     multiline
                     minRows={1}
                     maxRows={6}
@@ -216,10 +218,14 @@ export default function SendAnsQuesrion() {
                     }}
                   />
                   <Button
-                    sx={{ marginLeft: "auto", marginRight: "20px" }}
+                    sx={{
+                      marginLeft: "auto",
+                      marginRight: "10px",
+                      paddingRight: "10px",
+                    }}
                     onClick={handleSend}
                     variant="contained"
-                    endIcon={<TipsAndUpdatesIcon />}
+                    startIcon={<TipsAndUpdatesIcon />}
                   >
                     カイトウ
                   </Button>

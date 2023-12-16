@@ -81,14 +81,76 @@ export default function SendQuestionDialog() {
   };
   return (
     <React.Fragment>
-      <Fab
+      {/* <Fab
         onClick={handleClickOpen}
         sx={{ position: "absolute", bottom: 16, right: 16 }}
         color="primary"
         aria-label="add"
       >
         <CloseIcon />
-      </Fab>
+      </Fab> */}
+      <Box
+        component="div"
+        px={1}
+        sx={{
+          position: "fixed",
+          bottom: 10,
+          width: "100%",
+        }}
+      >
+        <Box
+          component="div"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{ minWidth: 275, background: "rgba(255,255,255,0)" }}
+          my={2}
+        >
+          {/* 送信フォーム */}
+          <Paper
+            component="form"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              width: 400,
+              boxShadow: 3,
+            }}
+          >
+            {/* <TextField
+              sx={{
+                margin: "10px 5px 10px 5px",
+                width: "50%",
+                minWidth: "58%",
+                height: "auto",
+                paddingRight: "0px",
+              }}
+              id="content"
+              label="回答を書く"
+              multiline
+              minRows={1}
+              maxRows={6}
+              variant="filled"
+              value={textForm}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                setTextForm(event.target.value);
+              }}
+            /> */}
+            <Button
+              sx={{
+                marginLeft: "auto",
+                // marginRight: "10px",
+                // paddingRight: "10px",
+                width: "100%",
+              }}
+              onClick={handleClickOpen}
+              variant="contained"
+              // startIcon={<TipsAndUpdatesIcon />}
+            >
+              凍稿する
+            </Button>
+          </Paper>
+        </Box>
+      </Box>
       <Dialog
         fullScreen
         open={openSendQuestionDialog}
@@ -146,6 +208,7 @@ export default function SendQuestionDialog() {
             >
               <CardContent>
                 <TextField
+                  autoFocus
                   id="content"
                   label="質問"
                   multiline
