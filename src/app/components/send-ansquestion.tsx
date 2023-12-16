@@ -80,6 +80,7 @@ export default function SendAnsQuesrion() {
   };
 
   const handleSend = async () => {
+    setTextForm("");
     if (textForm != "" && userName && discussionId) {
       await postCreateChild({
         user_id: userName,
