@@ -8,9 +8,6 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useLoader } from "@react-three/fiber";
 import { formatGetDiscussionItem } from "../func/api";
 import { useGLTF } from "@react-three/drei";
-// props: {
-//   item: formatGetDiscussionItem;
-// }
 interface typeRandomPosition {
   gltfRotation: number[];
   nullRotation: number[];
@@ -46,6 +43,7 @@ export const randomPosition: typeRandomPosition[] = [
 export function Pin(props: {
   color: "orange" | "blue";
   randomPositionTmp: typeRandomPosition;
+  item: formatGetDiscussionItem;
 }) {
   const [hovered, setHover] = useState(false);
   // https://sketchfab.com/3d-models/object10-push-pin-81aadd826c85488180fa3fa2d5f7a0aa
@@ -92,7 +90,7 @@ export function Pin(props: {
           onPointerOver={() => setHover(true)}
           onPointerOut={() => setHover(false)}
           onClick={() => {
-            setDiscussionId(57);
+            setDiscussionId(props.item.discussion_id);
             setOpenopenSendQuestionDialog(true);
           }}
           color={hovered ? "hotpink" : "orange"}

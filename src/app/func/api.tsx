@@ -11,6 +11,7 @@ import {
   getdiscussionAllDataAtom,
   parentDiscussionIdAtom,
   parentDiscussionIseeLevelAtom,
+  parentDiscussionRandomAtom,
   userNameAtom,
 } from "../recoil/atom";
 import axios from "axios";
@@ -28,7 +29,9 @@ export function ApiAutoUpdate() {
   const [discussionLevel, setDiscussionLevel] = useRecoilState(
     parentDiscussionIseeLevelAtom
   );
-
+  const [parentDiscussionItems, setParentDiscussionItems] = useRecoilState(
+    parentDiscussionRandomAtom
+  );
   // discussionIdに変更があるたびデータを取得し直す
   useEffect(() => {
     (async () => {
@@ -41,6 +44,13 @@ export function ApiAutoUpdate() {
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [discussionId]);
+  useEffect(() => {
+    (async () => {
+      const getdata = await getDiscussionRandom();
+      setParentDiscussionItems(getdata);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return <></>;
 }
@@ -105,6 +115,15 @@ export async function getDiscussionItemsRandom(
 ): Promise<formatGetDiscussionItem[]> {
   const getRequest = await axios.get(
     `https://p2-api.flyanyfree.com/discussion/get/random/?offset=${offset}`
+  );
+  return getRequest.data;
+}
+
+export async function getDiscussionRandom(): Promise<
+  formatGetDiscussionItem[]
+> {
+  const getRequest = await axios.get(
+    `https://p2-api.flyanyfree.com/discussion/get/random_normal/`
   );
   return getRequest.data;
 }

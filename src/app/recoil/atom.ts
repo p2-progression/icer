@@ -33,6 +33,13 @@ export const parentDiscussionIseeLevelAtom = atom<number>({
 });
 
 /**
+ * 親discussionのリストを保持
+ */
+export const parentDiscussionRandomAtom = atom<formatGetDiscussionItem[]>({
+  key: "parentDiscussionRandomAtom", // unique ID (with respect to other atoms/selectors)
+  default: [], // default value (aka initial value)
+});
+/**
  * 選択されているDiscussionを表示
  */
 export const getdiscussionAllDataAtom = atom<formatGetDiscussionItem[]>({
