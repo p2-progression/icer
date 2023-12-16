@@ -57,3 +57,7 @@ export const sendAnsQuestionDialogAtom = atom<boolean>({
   key: "sendAnsQuestionDialogAtom", // unique ID (with respect to other atoms/selectors)
   default: false, // default value (aka initial value)
 });
+export const openTipsAtom = atom<boolean>({
+  key: "openTipsAtom", // unique ID (with respect to other atoms/selectors)
+  default: false, // default value (aka initial value)
+});

@@ -8,7 +8,11 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useRecoilState } from "recoil";
-import { displayUserNameAtom, userNameAtom } from "../recoil/atom";
+import {
+  displayUserNameAtom,
+  openTipsAtom,
+  userNameAtom,
+} from "../recoil/atom";
 import { checkUserName, createUser } from "../func/api";
 
 export default function FormDialog() {
@@ -17,7 +21,7 @@ export default function FormDialog() {
   const [displayUserName, setDisplayUserName] =
     useRecoilState(displayUserNameAtom);
   const [nameForm, setNameForm] = React.useState("");
-
+  const [openTips, setOpenTips] = useRecoilState(openTipsAtom);
   // UserNameがからの時このダイアログをひらく
   React.useEffect(() => {
     if (userName == null) {
@@ -38,6 +42,7 @@ export default function FormDialog() {
       setUserName(nameForm);
       setDisplayUserName(checkRequest.userdata.display_username);
       setOpen(false);
+      setOpenTips(true);
     } else {
       if (displayUserName != "") {
         const createRequest = await createUser(

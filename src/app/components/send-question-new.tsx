@@ -142,12 +142,17 @@ export default function SendQuestionDialog() {
                 // marginRight: "10px",
                 // paddingRight: "10px",
                 width: "100%",
+                height: "70px",
+                borderRadius: "30px",
+                fontSize: "30px",
               }}
               onClick={handleClickOpen}
               variant="contained"
               // startIcon={<TipsAndUpdatesIcon />}
             >
-              凍稿する
+              <ruby>
+                凍稿<rt>トウコウ</rt>する
+              </ruby>
             </Button>
           </Paper>
         </Box>
@@ -186,7 +191,7 @@ export default function SendQuestionDialog() {
             >
               <img
                 width="80%"
-                src="/pengin_re1.png"
+                src="/pengin/pengin_question.png"
                 className="App-logo"
                 alt="logo"
               />

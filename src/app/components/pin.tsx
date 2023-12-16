@@ -9,7 +9,11 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useLoader } from "@react-three/fiber";
 import { formatGetDiscussionItem } from "../func/api";
 import { useGLTF } from "@react-three/drei";
-import { typeRandomPosition } from "./3dtest";
+export interface typeRandomPosition {
+  gltfRotation: number[];
+  nullRotation: number[];
+  null2position: number[];
+}
 
 export function Pin(props: {
   color: "orange" | "blue";
