@@ -9,38 +9,8 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useLoader } from "@react-three/fiber";
 import { formatGetDiscussionItem } from "../func/api";
 import { useGLTF } from "@react-three/drei";
-interface typeRandomPosition {
-  gltfRotation: number[];
-  nullRotation: number[];
-  null2position: number[];
-}
-export const randomPosition: typeRandomPosition[] = [
-  {
-    gltfRotation: [-Math.PI / 7, 0, -Math.PI / 11],
-    nullRotation: [Math.PI, -Math.PI / 4, -Math.PI / 3.2],
-    null2position: [0, 0.36, 0],
-  },
-  {
-    gltfRotation: [Math.PI / 7, 0, 0],
-    nullRotation: [Math.PI, -Math.PI / 2.7, -Math.PI / 3.2],
-    null2position: [0, 0.34, 0],
-  },
-  {
-    gltfRotation: [Math.PI / 5, 0, Math.PI / 5],
-    nullRotation: [Math.PI, -Math.PI / 2.5, -Math.PI / 5.2],
-    null2position: [0, 0.34, 0],
-  },
-  {
-    gltfRotation: [Math.PI / 7, 0, 0],
-    nullRotation: [Math.PI, -Math.PI / 3, -Math.PI / 4],
-    null2position: [0, 0.35, 0],
-  },
-  {
-    gltfRotation: [-Math.PI / 7, 0, 0],
-    nullRotation: [Math.PI, -Math.PI / 4.5, -Math.PI / 4],
-    null2position: [0, 0.34, 0],
-  },
-];
+import { typeRandomPosition } from "./3dtest";
+
 export function Pin(props: {
   color: "orange" | "blue";
   randomPositionTmp: typeRandomPosition;

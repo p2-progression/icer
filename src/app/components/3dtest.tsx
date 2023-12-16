@@ -1,7 +1,7 @@
 "use client";
 import { OrbitControls, Sky } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
@@ -16,7 +16,7 @@ import {
   parentDiscussionRandomAtom,
   sendAnsQuestionDialogAtom,
 } from "../recoil/atom";
-import { Pin, randomPosition } from "./pin";
+import { Pin } from "./pin";
 
 function Scene() {
   const [hovered, setHover] = useState(false);
@@ -77,11 +77,43 @@ function Background() {
     </>
   );
 }
-
+export interface typeRandomPosition {
+  gltfRotation: number[];
+  nullRotation: number[];
+  null2position: number[];
+}
+export const randomPosition: typeRandomPosition[] = [
+  {
+    gltfRotation: [-Math.PI / 7, 0, -Math.PI / 11],
+    nullRotation: [Math.PI, -Math.PI / 4, -Math.PI / 3.2],
+    null2position: [0, 0.36, 0],
+  },
+  {
+    gltfRotation: [Math.PI / 7, 0, 0],
+    nullRotation: [Math.PI, -Math.PI / 2.7, -Math.PI / 3.2],
+    null2position: [0, 0.34, 0],
+  },
+  {
+    gltfRotation: [Math.PI / 5, 0, Math.PI / 5],
+    nullRotation: [Math.PI, -Math.PI / 2.5, -Math.PI / 5.2],
+    null2position: [0, 0.34, 0],
+  },
+  {
+    gltfRotation: [Math.PI / 7, 0, 0],
+    nullRotation: [Math.PI, -Math.PI / 3, -Math.PI / 4],
+    null2position: [0, 0.35, 0],
+  },
+  {
+    gltfRotation: [-Math.PI / 7, 0, 0],
+    nullRotation: [Math.PI, -Math.PI / 4.5, -Math.PI / 4],
+    null2position: [0, 0.34, 0],
+  },
+];
 export default function App() {
   const [parentDiscussionItems, setParentDiscussionItems] = useRecoilState(
     parentDiscussionRandomAtom
   );
+
   return (
     <>
       <ApiAutoUpdate />
@@ -97,12 +129,12 @@ export default function App() {
         <ambientLight intensity={1.5} />
         <directionalLight color="" position={[0, 0, 10]} />
         <directionalLight color="#ffffff" position={[0, 0, -10]} />
-        {parentDiscussionItems.map((ele, index) => {
+        {parentDiscussionItems.slice(0, 5).map((ele, index) => {
           return (
             <Pin
               color="blue"
               key={index}
-              randomPositionTmp={randomPosition[index]}
+              randomPositionTmp={randomPosition[Number(index)]}
               item={ele}
             />
           );
