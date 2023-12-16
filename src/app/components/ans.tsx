@@ -55,16 +55,20 @@ export const Ansperson = (props: { item: formatGetDiscussionItem }) => {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  const [onceClick, setOnceClick] = React.useState(false);
   const handleUpIsee = async () => {
-    if (userName == props.item.user_id && discussionId) {
-      await postUpIsee({
-        parent_discussion_id: discussionId,
-        user_id: userName,
-        discussion_id: props.item.discussion_id,
-        count: 5,
-      });
-    } else {
-      if (userName && discussionId) {
+    setOnceClick(true);
+    if (userName != props.item.user_id && discussionId) {
+      if (
+        discussionAll.find((ele) => ele.is_parent == 1)?.user_id == userName
+      ) {
+        await postUpIsee({
+          parent_discussion_id: discussionId,
+          user_id: userName,
+          discussion_id: props.item.discussion_id,
+          count: 5,
+        });
+      } else {
         await postUpIsee({
           parent_discussion_id: discussionId,
           user_id: userName,
@@ -125,6 +129,7 @@ export const Ansperson = (props: { item: formatGetDiscussionItem }) => {
               },
             }}
             variant="contained"
+            disabled={onceClick}
           >
             I SEE {props.item.isee}
           </Button>

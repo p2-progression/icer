@@ -38,11 +38,7 @@ export const Shutter: React.FC = () => {
     <div
       className={`${styles.shutter} ${!isLoading && !active && styles.fadeIn}`}
     >
-      <img
-        className={styles["shtter-img"]}
-        alt=""
-        src="/icon-512x512.png"
-      ></img>
+      <img className={styles["shtter-img"]} alt="" src="/load-icon.svg"></img>
       <div className={styles["shtter-linear"]}>
         <LinearProgressWithLabel value={progress} />
       </div>
