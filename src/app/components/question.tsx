@@ -10,8 +10,11 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, CardMedia, Paper } from "@mui/material";
 import Image from "next/image";
+import { formatGetDiscussionItem } from "../func/api";
 
-export const QuestionCard = (props: { content: string }) => {
+export const QuestionCard = (props: {
+  content: formatGetDiscussionItem | null;
+}) => {
   return (
     <>
       <Box
@@ -21,20 +24,86 @@ export const QuestionCard = (props: { content: string }) => {
         alignItems="center"
         sx={{ minWidth: 275, background: "rgba(255,255,255,0)" }}
       >
-        <Box
-          component="div"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          sx={{ maxWidth: 345 }}
-        >
-          <img
-            width="80%"
-            src="/pengin_re1.png"
-            className="App-logo"
-            alt="logo"
-          />
-        </Box>
+        {props.content !== null && props.content?.isee_level <= 1 && (
+          <Box
+            component="div"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ maxWidth: 345 }}
+          >
+            <img
+              width="80%"
+              src="/pengin/pengin_1.png"
+              className="App-logo"
+              alt="logo"
+            />
+          </Box>
+        )}
+        {props.content !== null && props.content?.isee_level == 2 && (
+          <Box
+            component="div"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ maxWidth: 345 }}
+          >
+            <img
+              width="80%"
+              src="/pengin/pengin_2.png"
+              className="App-logo"
+              alt="logo"
+            />
+          </Box>
+        )}
+        {props.content !== null && props.content?.isee_level == 3 && (
+          <Box
+            component="div"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ maxWidth: 345 }}
+          >
+            <img
+              width="80%"
+              src="/pengin/pengin_3.png"
+              className="App-logo"
+              alt="logo"
+            />
+          </Box>
+        )}
+        {props.content !== null && props.content?.isee_level == 4 && (
+          <Box
+            component="div"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ maxWidth: 345 }}
+          >
+            <img
+              width="80%"
+              src="/pengin/pengin_4.png"
+              className="App-logo"
+              alt="logo"
+            />
+          </Box>
+        )}
+        {props.content !== null && props.content?.isee_level == 5 && (
+          <Box
+            component="div"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ maxWidth: 345 }}
+          >
+            <img
+              width="80%"
+              src="/pengin/pengin_5.png"
+              className="App-logo"
+              alt="logo"
+            />
+          </Box>
+        )}
       </Box>
       <Box
         component="div"
@@ -49,7 +118,7 @@ export const QuestionCard = (props: { content: string }) => {
         >
           <CardContent>
             <Typography variant="h5" component="div">
-              {props.content}
+              {props.content?.content}
             </Typography>
           </CardContent>
         </Card>

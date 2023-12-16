@@ -17,69 +17,15 @@ import {
   parentDiscussionRandomAtom,
   sendAnsQuestionDialogAtom,
 } from "../recoil/atom";
-import { Pin, typeRandomPosition } from "./pin";
+import {
+  Pin,
+  blueRandomPosition,
+  redRandomPosition,
+  typeRandomPosition,
+} from "./pin";
 import { Alert, Snackbar } from "@mui/material";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
-export const blueRandomPosition: typeRandomPosition[] = [
-  {
-    gltfRotation: [-Math.PI / 7, 0, -Math.PI / 11],
-    nullRotation: [Math.PI, -Math.PI / 4, -Math.PI / 3.2],
-    null2position: [0, 0.36, 0],
-  },
-  {
-    gltfRotation: [Math.PI / 7, 0, 0],
-    nullRotation: [Math.PI, -Math.PI / 2.7, -Math.PI / 3.2],
-    null2position: [0, 0.34, 0],
-  },
-  {
-    gltfRotation: [Math.PI / 5, 0, Math.PI / 5],
-    nullRotation: [Math.PI, -Math.PI / 2.5, -Math.PI / 5.2],
-    null2position: [0, 0.34, 0],
-  },
-  {
-    gltfRotation: [Math.PI / 7, 0, 0],
-    nullRotation: [Math.PI, -Math.PI / 3, -Math.PI / 4],
-    null2position: [0, 0.35, 0],
-  },
-  {
-    gltfRotation: [-Math.PI / 7, 0, 0],
-    nullRotation: [Math.PI, -Math.PI / 4.5, -Math.PI / 4],
-    null2position: [0, 0.34, 0],
-  },
-];
 
-export const redRandomPosition: typeRandomPosition[] = [
-  {
-    gltfRotation: [Math.PI / 4, 0, 0],
-    nullRotation: [0, -Math.PI / 3.6, -Math.PI / 3.2],
-    null2position: [0, 0.37, 0],
-  },
-  {
-    gltfRotation: [-Math.PI / 7, 0, 0],
-    nullRotation: [0.2, -Math.PI / 7, -Math.PI / 3.8],
-    null2position: [0, 0.38, 0],
-  },
-  {
-    gltfRotation: [Math.PI / 4, 0, 0],
-    nullRotation: [0.5, -Math.PI / 7, -Math.PI / 3.8],
-    null2position: [0, 0.38, 0],
-  },
-  {
-    gltfRotation: [Math.PI / 8, -Math.PI / 5, Math.PI / 4],
-    nullRotation: [-1, -Math.PI / 4.0, -Math.PI / 2.8],
-    null2position: [0, 0.4, 0],
-  },
-  {
-    gltfRotation: [Math.PI / 8, -Math.PI / 5, Math.PI / 4],
-    nullRotation: [-1, -Math.PI / 2.5, -Math.PI / 2.9],
-    null2position: [0, 0.42, 0],
-  },
-  {
-    gltfRotation: [Math.PI / 3, -Math.PI / 3, Math.PI / 4],
-    nullRotation: [-0.5, -Math.PI / 3.2, -Math.PI / 2.9],
-    null2position: [0, 0.465, 0],
-  },
-];
 function Scene() {
   const [hovered, setHover] = useState(false);
   // https://sketchfab.com/3d-models/map-pin-667ec99860674e57892823a19a1d8f15
@@ -160,7 +106,18 @@ export default function App() {
         <directionalLight color="" position={[0, 0, 10]} />
         <directionalLight color="#ffffff" position={[0, 0, -10]} />
 
-        {parentDiscussionItems
+        {[
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+          ...parentDiscussionItems,
+        ]
+          .slice(0, 40)
           .filter((e) => e.isee_level > 1)
           .map((ele, index) => {
             return (

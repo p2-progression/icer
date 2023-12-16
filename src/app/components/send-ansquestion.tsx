@@ -46,7 +46,11 @@ import {
 } from "../recoil/atom";
 import { useRecoilState } from "recoil";
 import dayjs from "dayjs";
-import { getDiscussionAll, postCreateChild } from "../func/api";
+import {
+  formatGetDiscussionItem,
+  getDiscussionAll,
+  postCreateChild,
+} from "../func/api";
 import { iseeCheck } from "../func/isee";
 
 const Transition = React.forwardRef(function Transition(
@@ -151,16 +155,16 @@ export default function SendAnsQuesrion() {
               {/* ここからメインコンテンツ */}
               <QuestionCard
                 content={
-                  discussionAll.find((ele) => ele.is_parent == 1)?.content || ""
+                  discussionAll.find((ele) => ele.is_parent == 1) || null
                 }
               />
 
               {/* 回答をループ */}
-              <h1>
+              {/* <h1>
                 level:
                 {discussionAll.find((ele) => ele.is_parent == 1)?.isee_level ||
                   0}
-              </h1>
+              </h1> */}
 
               {discussionAll.map((ele, index) => {
                 if (ele.is_parent == 0) {

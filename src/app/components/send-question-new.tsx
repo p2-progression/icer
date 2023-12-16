@@ -108,13 +108,13 @@ export default function SendQuestionDialog() {
           my={2}
         >
           {/* 送信フォーム */}
-          <Paper
+          <Box
             component="form"
             sx={{
               display: "flex",
               alignItems: "center",
               width: 400,
-              boxShadow: 3,
+              // boxShadow: 3,
             }}
           >
             {/* <TextField
@@ -145,6 +145,7 @@ export default function SendQuestionDialog() {
                 height: "70px",
                 borderRadius: "30px",
                 fontSize: "30px",
+                backgroundImage: "url(/back.png)",
               }}
               onClick={handleClickOpen}
               variant="contained"
@@ -154,7 +155,7 @@ export default function SendQuestionDialog() {
                 凍稿<rt>トウコウ</rt>する
               </ruby>
             </Button>
-          </Paper>
+          </Box>
         </Box>
       </Box>
       <Dialog
@@ -237,12 +238,19 @@ export default function SendQuestionDialog() {
                 // marginRight: "10px",
                 // paddingRight: "10px",
                 width: "100%",
+                height: "70px",
+                borderRadius: "30px",
+                fontSize: "30px",
+                backgroundImage: "url(/back.png)",
+                color: "#000000",
               }}
               onClick={handleSend}
               variant="contained"
               // startIcon={<TipsAndUpdatesIcon />}
             >
-              凍稿する
+              <ruby>
+                凍稿<rt>トウコウ</rt>する
+              </ruby>
             </Button>
           </Box>
         </Box>
