@@ -142,10 +142,13 @@ export default function SendQuestionDialog() {
                 // marginRight: "10px",
                 // paddingRight: "10px",
                 width: "100%",
+                maxWidth: 345,
+                minWidth: 275,
                 height: "70px",
                 borderRadius: "30px",
                 fontSize: "30px",
                 backgroundImage: "url(/back.png)",
+                backgroundSize: "cover",
               }}
               onClick={handleClickOpen}
               variant="contained"
@@ -231,18 +234,27 @@ export default function SendQuestionDialog() {
               </CardContent>
             </Card>
           </Box>
-          <Box component="div" px={5} sx={{ width: "100%" }}>
+          <Box
+            component="div"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            px={5}
+            sx={{ width: "100%" }}
+          >
             <Button
               sx={{
-                marginLeft: "auto",
+                // marginLeft: "auto",
                 // marginRight: "10px",
                 // paddingRight: "10px",
                 width: "100%",
+                maxWidth: 345,
+                minWidth: 275,
                 height: "70px",
                 borderRadius: "30px",
                 fontSize: "30px",
                 backgroundImage: "url(/back.png)",
-                color: "#000000",
+                backgroundSize: "cover",
               }}
               onClick={handleSend}
               variant="contained"
