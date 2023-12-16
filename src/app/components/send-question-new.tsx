@@ -23,6 +23,7 @@ import {
   Fab,
   FormControl,
   Grid,
+  Grow,
   InputAdornment,
   InputBase,
   InputLabel,
@@ -46,7 +47,7 @@ const Transition = React.forwardRef(function Transition(
   },
   ref: React.Ref<unknown>
 ) {
-  return <Slide direction="up" ref={ref} {...props} />;
+  return <Grow ref={ref} {...props} />;
 });
 
 export default function SendQuestionDialog() {
