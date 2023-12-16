@@ -67,7 +67,7 @@ export default function FormDialog() {
         ユーザー設定
       </Button> */}
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>ユーザー登録</DialogTitle>
+        <DialogTitle>なまえを決めよう！</DialogTitle>
         <DialogContent>
           <DialogContentText>10文字以内で設定できます</DialogContentText>
           <TextField
@@ -100,7 +100,7 @@ export default function FormDialog() {
         </DialogContent>
         <DialogActions>
           {/* <Button onClick={handleClose}>Cancel</Button> */}
-          <Button onClick={handleSubmit}>進む</Button>
+          <Button onClick={handleSubmit}>決定</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
