@@ -195,8 +195,9 @@ export default function SendQuestionDialog() {
               sx={{ maxWidth: 345 }}
             >
               <img
-                width="80%"
-                src="/pengin/pengin_question.png"
+                height="500px"
+                width="auto"
+                src="/pengin/pengin_question_re.png"
                 className="App-logo"
                 alt="logo"
               />

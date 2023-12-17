@@ -53,7 +53,7 @@ export default function FormDialog() {
         setOpenTips(true);
       } else {
         const createRequest = await createUser(nameForm, "なし");
-        setUserName(nameForm);
+        handleSubmit();
       }
     } else {
       setErrorNull(true);

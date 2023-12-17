@@ -29,7 +29,7 @@ export const QuestionCard = (props: {
         }}
       >
         {[0, 1, 2, 3, 4, 5].map((index) => {
-          const data = `/pengin/pengin_${index}.png`;
+          const data = `/pengin/pen${index}.png`;
           return (
             <>
               <img
