@@ -14,6 +14,8 @@ import {
   userNameAtom,
 } from "../recoil/atom";
 import { checkUserName, createUser } from "../func/api";
+import { Alert, Snackbar } from "@mui/material";
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
@@ -59,13 +61,35 @@ export default function FormDialog() {
       setErrorNull(true);
     }
   };
-
+  const [openWer, setOpenWer] = React.useState(true);
   return (
     <React.Fragment>
       {/* <Button variant="outlined" onClick={handleClickOpen}>
         ユーザー設定
       </Button> */}
+
       <Dialog open={open} onClose={handleClose}>
+        <Snackbar
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          open={openWer}
+          autoHideDuration={8000}
+          onClose={() => {
+            setOpenWer(false);
+          }}
+        >
+          <Alert
+            onClose={() => {
+              setOpenWer(false);
+            }}
+            severity="error"
+            // icon={<TipsAndUpdatesIcon />}
+            sx={{ width: "100%" }}
+          >
+            サーバーサイド応答なし:
+            <br />
+            サンプルモードのため動作しない機能があります。
+          </Alert>
+        </Snackbar>
         <DialogTitle>なまえを決めよう！</DialogTitle>
         <DialogContent>
           <DialogContentText>10文字以内で設定できます</DialogContentText>

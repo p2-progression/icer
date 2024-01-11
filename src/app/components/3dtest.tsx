@@ -134,7 +134,7 @@ export default function App() {
           ...parentDiscussionItems,
           ...parentDiscussionItems,
         ]
-          .slice(0, 36)
+          .slice(0, 50)
           .filter((e) => e.isee_level > 1)
           .map((ele, index) => {
             return (
