@@ -1,39 +1,27 @@
-Icer App
-©️2023 Progression
+# Icer
+### P2HACKS2023　成果物    
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## 開発技術
 
-First, run the development server:
+短期間での開発のため、できる限り慣れているものや学習コストの低い言語を選択した。  
+利用したプログラミング言語  
+　フロントエンド:Typescript  
+　バックエンド:Python,SQL  
+　など  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 利用したフレームワーク・ライブラリ
+![image](https://github.com/p2hacks2023/pre-10/assets/49752462/f5d18533-61c2-47d0-966d-5443b55c5d2b)  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+バックエンド：FastAPI  
+フロントエンド：React,Next.js,Material UI,three.js(react-three-fiber)    
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+バックエンド側では、PythonでAPIを設計できるFastAPIを採用した。  
+フロントエンド側では、メインのフレームワークとしてNext.jsを使用した。  
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+また、短期間で質の高いUIを完成させるために、UIフレームワークである、Material UIを採用。  
 
-## Learn More
+3D表現を実現するために、three.jsを使用。Reactで利用するため、react-three-fiberを使用した。 状態管理には、recoilを使用。  
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![image](https://github.com/p2hacks2023/pre-10/assets/49752462/841da892-0531-4d99-bde4-8454d3e3f93a)  
