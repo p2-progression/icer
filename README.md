@@ -2,7 +2,7 @@
 ### P2HACKS2023　成果物    
 https://github.com/p2hacks2023/pre-10  
 
-サンプルページ
+サンプルページ  
 https://icer.pages.dev 
 
 ## 開発技術
